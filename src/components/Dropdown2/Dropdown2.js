@@ -50,18 +50,6 @@ export function DropdownList({ children }) {
   return <ul className="dropdown__list">{children}</ul>;
 }
 
-export function DropdownGroup({ children }) {
-  return <div className="dropdown__group">{children}</div>;
-}
-
-export function DropdownGroupHeading({ children }) {
-  return <div className="dropdown__groupHeading">{children}</div>;
-}
-
-export function DropdownGroupList({ children }) {
-  return <div>{children}</div>;
-}
-
 export function DropdownOption({ children, option, isDisabled, className }) {
   const {
     selectedOption,

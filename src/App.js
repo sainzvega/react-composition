@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React from "react";
-import { Dropdown as DropdownTight } from "./components/Dropdown";
+import { Dropdown as DropdownTight } from "./components/Dropdown"; // this is the tighly coupled component
 import {
   Dropdown,
   DropdownControl,
@@ -11,19 +11,44 @@ import {
   DropdownList,
   DropdownOption
 } from "./components/Dropdown2";
-import Select from "react-select";
-
 import { starWarsNames, groupedStarWarsNames } from "./data";
 
-function CustomGroupLabelWithBadge({ group }) {
-  return (
-    <div className="custom-group__label">
-      <span>{group.label}</span>
-      <span className="custom-group__badge">{group.options.length}</span>
-    </div>
-  );
-}
+/* Uncomment to demonstrate basic select functionality */
+// function App() {
+//   function handleSelect(option) {
+//     console.log("This is new selectedOption", option);
+//   }
 
+//   return (
+//     <main className="App">
+//       <div className="Toolbar">
+//         <div className="Toolbar__item">
+//           <label>Tightly Coupled</label>
+//           <DropdownTight options={starWarsNames} onSelect={handleSelect} />
+//         </div>
+//         <div className="Toolbar__item">
+//           <label>Loosely Coupled</label>
+//           <Dropdown onSelect={handleSelect}>
+//             <DropdownControl />
+//             <DropdownPopover>
+//               <DropdownList>
+//                 {starWarsNames.map(option => (
+//                   <DropdownOption
+//                     key={option.value}
+//                     option={option}
+//                     isDisabled={option.isDisabled}
+//                   />
+//                 ))}
+//               </DropdownList>
+//             </DropdownPopover>
+//           </Dropdown>
+//         </div>
+//       </div>
+//     </main>
+//   );
+// }
+
+/* Uncomment for Grouped */
 function App() {
   function handleSelect(option) {
     console.log("This is new selectedOption", option);
@@ -32,22 +57,20 @@ function App() {
   return (
     <main className="App">
       <div className="Toolbar">
-        {/* <div className="Toolbar__item">
-          <label>React Select</label>
-          <Select
-            options={groupedStarWarsNames}
-            isClearable={false}
-            isSearchable={false}
-            menuIsOpen={true}
-          />
-        </div> */}
         <div className="Toolbar__item">
-          <label>Tighly Coupled</label>
+          <label>Tightly Coupled</label>
           <DropdownTight
             options={groupedStarWarsNames}
             onSelect={handleSelect}
             formatGroupLabel={group => {
-              return <CustomGroupLabelWithBadge group={group} />;
+              return (
+                <div className="custom-group__label">
+                  <span>{group.label}</span>
+                  <span className="custom-group__badge">
+                    {group.options.length}
+                  </span>
+                </div>
+              );
             }}
           />
         </div>
@@ -58,11 +81,16 @@ function App() {
             <DropdownPopover>
               <DropdownList>
                 {groupedStarWarsNames.map(group => (
-                  <DropdownGroup key={group.label}>
-                    <DropdownGroupHeading>
-                      <CustomGroupLabelWithBadge group={group} />
-                    </DropdownGroupHeading>
-                    <DropdownGroupList>
+                  <div className="dropdown__group">
+                    <div className="dropdown__groupHeading">
+                      <div className="custom-group__label">
+                        <span>{group.label}</span>
+                        <span className="custom-group__badge">
+                          {group.options.length}
+                        </span>
+                      </div>
+                    </div>
+                    <div>
                       {group.options.map(nestedOption => (
                         <DropdownOption
                           key={nestedOption.value}
@@ -70,8 +98,8 @@ function App() {
                           isDisabled={nestedOption.isDisabled}
                         />
                       ))}
-                    </DropdownGroupList>
-                  </DropdownGroup>
+                    </div>
+                  </div>
                 ))}
               </DropdownList>
             </DropdownPopover>
