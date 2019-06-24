@@ -3,9 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "classnames": "^2.2.6",
     "react": "^16.8.6",
+    "react-app-polyfill": "^1.0.1",
     "react-dom": "^16.8.6",
-    "react-scripts": "3.0.1"
+    "react-scripts": "3.0.1",
+    "react-select": "^3.0.4",
+    "starwars-names": "^1.6.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -18,14 +22,10 @@
   },
   "browserslist": {
     "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
+      "defaults"
     ],
     "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
+      "defaults"
     ]
   }
 }
