@@ -4,7 +4,7 @@ import classNames from "classnames";
 export function Dropdown({
   options,
   onSelect,
-  placeholder = "Select an option...",  
+  placeholder = "Select an option..."
 }) {
   const [visible, setVisible] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
@@ -23,7 +23,7 @@ export function Dropdown({
       <div className="dropdown__control" onClick={() => setVisible(!visible)}>
         <div className="dropdown__value">
           {selectedOption ? selectedOption.label : placeholder}
-        </div>        
+        </div>
       </div>
       <div className="dropdown__popover" tabIndex="-1" hidden={!visible}>
         <ul className="dropdown__list">

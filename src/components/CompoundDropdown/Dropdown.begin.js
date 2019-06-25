@@ -1,4 +1,4 @@
-import React, { useState, useContext, useMemo, createContext } from "react";
+import React, { useState, createContext, useContext, useMemo } from "react";
 import classNames from "classnames";
 
 const DropdownContext = createContext();
@@ -30,7 +30,7 @@ export function DropdownControl({ placeholder = "Select an option..." }) {
     <div className="dropdown__control" onClick={() => setVisible(!visible)}>
       <div className="dropdown__value">
         {selectedOption ? selectedOption.label : placeholder}
-      </div>      
+      </div>
     </div>
   );
 }

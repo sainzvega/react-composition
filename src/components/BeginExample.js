@@ -6,11 +6,12 @@ import {
   DropdownPopover as CompoundDropdownPopover,
   DropdownList as CompoundDropdownList,
   DropdownOption as CompoundDropdownOption
-} from "./CompoundDropdown/Dropdown.begin";
-import { names } from "../data"; // not grouped
+} from "./CompoundDropdown/Dropdown.begin"; // we must import all the pieces individually
+import { names } from "../data";
 
 export default function BeginExample() {
   function handleSelect(option) {
+    // normally we would be setting some state in here
     console.log("This is new selectedOption", option);
   }
 
