@@ -1,0 +1,35 @@
+.tabs__list {
+  display: flex;
+  background: hsla(0, 0%, 0%, 0.05);
+}
+
+.tabs__list.tabs__list--wrap {
+  flex-wrap: wrap;
+}
+
+.tabs__panel {
+  outline: none;
+}
+
+.tabs__tab {
+  display: inline-block;
+  border: none;
+  padding: 0.25em 0.5em;
+  margin: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border-bottom: solid 1px transparent;
+}
+
+.tabs__tab.active {
+  background: hsla(0, 0%, 0%, 0.05);
+}
+
+.tabs__tab.disabled {
+  opacity: 0.25;
+  cursor: default;
+}

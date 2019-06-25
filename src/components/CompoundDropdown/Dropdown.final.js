@@ -1,6 +1,5 @@
 import React, { useState, useContext, useMemo, createContext } from "react";
 import classNames from "classnames";
-import "../Dropdown/Dropdown.css";
 
 const DropdownContext = createContext();
 
@@ -32,7 +31,6 @@ export function DropdownControl({ placeholder = "Select an option..." }) {
       <div className="dropdown__value">
         {selectedOption ? selectedOption.label : placeholder}
       </div>
-      <div className="dropdown__indicator">^</div>
     </div>
   );
 }

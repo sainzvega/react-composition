@@ -1,113 +1,44 @@
-/* eslint-disable */
-import React from "react";
-import { Dropdown as DropdownTight } from "./components/Dropdown"; // this is the tighly coupled component
-import {
-  Dropdown,
-  DropdownControl,
-  DropdownPopover,
-  DropdownGroup,
-  DropdownGroupHeading,
-  DropdownGroupList,
-  DropdownList,
-  DropdownOption
-} from "./components/Dropdown2";
-import { starWarsNames, groupedStarWarsNames } from "./data";
+import React, { useState } from "react";
+import "./index.css";
 
-/* Uncomment to demonstrate basic select functionality */
-// function App() {
-//   function handleSelect(option) {
-//     console.log("This is new selectedOption", option);
-//   }
+import BeginExample from "./components/BeginExample";
+import FinalExample from "./components/FinalExample";
+import NavTabs from "./components/NavTabs";
 
-//   return (
-//     <main className="App">
-//       <div className="Toolbar">
-//         <div className="Toolbar__item">
-//           <label>Tightly Coupled</label>
-//           <DropdownTight options={starWarsNames} onSelect={handleSelect} />
-//         </div>
-//         <div className="Toolbar__item">
-//           <label>Loosely Coupled</label>
-//           <Dropdown onSelect={handleSelect}>
-//             <DropdownControl />
-//             <DropdownPopover>
-//               <DropdownList>
-//                 {starWarsNames.map(option => (
-//                   <DropdownOption
-//                     key={option.value}
-//                     option={option}
-//                     isDisabled={option.isDisabled}
-//                   />
-//                 ))}
-//               </DropdownList>
-//             </DropdownPopover>
-//           </Dropdown>
-//         </div>
-//       </div>
-//     </main>
-//   );
-// }
+const routerTable = {
+  "Basic Dropdown": {
+    routeName: "basic-dropdown",
+    description: "Basic component functionality.",
+    example: BeginExample
+  },
+  "Grouped Dropdown": {
+    routeName: "grouped-dropdown",
+    description: "Grouped component functionality",
+    example: FinalExample
+  }
+};
 
-/* Uncomment for Grouped */
-function App() {
-  function handleSelect(option) {
-    console.log("This is new selectedOption", option);
+export default function App() {
+  const [currentRouteData, setCurrentRouteData] = useState(
+    routerTable["Basic Dropdown"]
+  );
+
+  const routes = Object.keys(routerTable);
+  const CurrentRouteComponent = currentRouteData.example;
+
+  function handleNavClick(routeName) {
+    setCurrentRouteData(routerTable[routeName]);
   }
 
   return (
-    <main className="App">
-      <div className="Toolbar">
-        <div className="Toolbar__item">
-          <label>Tightly Coupled</label>
-          <DropdownTight
-            options={groupedStarWarsNames}
-            onSelect={handleSelect}
-            formatGroupLabel={group => {
-              return (
-                <div className="custom-group__label">
-                  <span>{group.label}</span>
-                  <span className="custom-group__badge">
-                    {group.options.length}
-                  </span>
-                </div>
-              );
-            }}
-          />
-        </div>
-        <div className="Toolbar__item">
-          <label>Loosely Coupled</label>
-          <Dropdown onSelect={handleSelect}>
-            <DropdownControl />
-            <DropdownPopover>
-              <DropdownList>
-                {groupedStarWarsNames.map(group => (
-                  <div className="dropdown__group">
-                    <div className="dropdown__groupHeading">
-                      <div className="custom-group__label">
-                        <span>{group.label}</span>
-                        <span className="custom-group__badge">
-                          {group.options.length}
-                        </span>
-                      </div>
-                    </div>
-                    <div>
-                      {group.options.map(nestedOption => (
-                        <DropdownOption
-                          key={nestedOption.value}
-                          option={nestedOption}
-                          isDisabled={nestedOption.isDisabled}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </DropdownList>
-            </DropdownPopover>
-          </Dropdown>
-        </div>
+    <div className="App">
+      <NavTabs routes={routes} onClick={handleNavClick} />
+      <div className="Description">
+        <p>{currentRouteData.description}</p>
       </div>
-    </main>
+      <div className="Example">
+        {CurrentRouteComponent && <CurrentRouteComponent />}
+      </div>
+    </div>
   );
 }
-
-export default App;
