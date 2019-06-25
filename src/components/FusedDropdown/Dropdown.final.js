@@ -5,8 +5,10 @@ export function Dropdown({
   options,
   onSelect,
   placeholder = "Select an option...",
+  isGrouped = false,
   formatGroupLabel
 }) {
+  //#region State & Handlers
   const [visible, setVisible] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
 
@@ -18,6 +20,7 @@ export function Dropdown({
     setSelectedOption(option);
     setVisible(false);
   }
+  //#endregion State & Handlers
 
   return (
     <div className="dropdown">
@@ -29,7 +32,7 @@ export function Dropdown({
       <div className="dropdown__popover" tabIndex="-1" hidden={!visible}>
         <ul className="dropdown__list">
           {options.map(option => {
-            if (option.options) {
+            if (isGrouped && option.options) {
               // grouped case
               return (
                 <div key={option.label} className="group">

@@ -3,6 +3,7 @@ import "./index.css";
 
 import BeginExample from "./components/BeginExample";
 import FinalExample from "./components/FinalExample";
+// import FinalExampleClean from "./components/FinalExample.extra";
 import NavTabs from "./components/NavTabs";
 
 const routerTable = {
@@ -16,6 +17,11 @@ const routerTable = {
     description: "Grouped component functionality",
     example: FinalExample
   }
+  // "Grouped Dropdown Cleaner": {
+  //   routeName: "grouped-dropdown-clean",
+  //   description: "More clean example",
+  //   example: FinalExampleClean
+  // }
 };
 
 export default function App() {

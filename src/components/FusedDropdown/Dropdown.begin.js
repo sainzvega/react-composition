@@ -6,6 +6,7 @@ export function Dropdown({
   onSelect,
   placeholder = "Select an option..."
 }) {
+  //#region State & Handlers
   const [visible, setVisible] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
 
@@ -17,6 +18,7 @@ export function Dropdown({
     setSelectedOption(option);
     setVisible(false);
   }
+  //#endregion State & Handlers
 
   return (
     <div className="dropdown">
